@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+.env
+/storage/*.key
+
+# docker volumes
+mysql_data
+postgres_data
+n8n_data

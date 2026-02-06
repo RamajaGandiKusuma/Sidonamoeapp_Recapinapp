@@ -1,0 +1,75 @@
+services:
+  web:
+    build: .
+    container_name: web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - sidonamoe_net
+  mysql:
+    image: mariadb:10.6
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sidonamoe
+      MYSQL_USER: sidonamoe
+      MYSQL_PASSWORD: sidonamoe
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sidonamoe_net
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+      - mysql
+    networks:
+      - sidonamoe_net
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: n8n
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: n8n
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sidonamoe_net
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    depends_on:
+      - postgres
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: n8n
+      DB_POSTGRESDB_PASSWORD: n8n
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - sidonamoe_net
+
+networks:
+  sidonamoe_net:
+
+volumes:
+  mysql_data:
+  postgres_data:
+  n8n_data:
