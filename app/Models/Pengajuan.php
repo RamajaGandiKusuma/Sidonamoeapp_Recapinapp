@@ -13,20 +13,21 @@ class Pengajuan extends Model
 
     protected $fillable = [
         'email',
-        'nama_instansi',
-        'alamat_instansi',
+        'instansi',
+        'alamat',
         'tanggal',
-        'jam_kunjung',
+        'jam_kunjungan',
         'materi',
-        'pimpinan_rombongan',
+        'pimpinan',
         'jumlah',
         'no_wa',
-        'dokumen'
+        'dokumen',
+        'created_at'
     ];
 
     public function persetujuan()
     {
-        return $this->belongsTo(Pengajuan::class, 'id_pengajuan', 'id_pengajuan');
+        return $this->hasOne(Persetujuan::class, 'id_pengajuan', 'id_pengajuan');
     }
     
     use HasFactory;

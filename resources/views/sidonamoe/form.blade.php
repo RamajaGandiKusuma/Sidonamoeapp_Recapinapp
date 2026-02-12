@@ -24,15 +24,15 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <label for="nama_instansi">Nama Instansi</label>
-                    <input type="text" id="nama_instansi" name="nama_instansi" required>
+                    <label for="instansi">Nama Instansi</label>
+                    <input type="text" id="instansi" name="instansi" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="form-row">
-                    <label for="alamat_instansi">Alamat Instansi</label>
-                    <textarea id="alamat_instansi" name="alamat_instansi" required></textarea>
+                    <label for="alamat">Alamat Instansi</label>
+                    <textarea id="alamat" name="alamat" required></textarea>
                 </div>
             </div>
 
@@ -45,8 +45,8 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <label for="jam_kunjung">Jam Kunjung</label>
-                    <input type="time" id="jam_kunjung" name="jam_kunjung" required>
+                    <label for="jam_kunjungan">Jam Kunjung</label>
+                    <input type="time" id="jam_kunjungan" name="jam_kunjungan" required>
                 </div>
             </div>
 
@@ -59,8 +59,8 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <label for="pimpinan_rombongan">Pimpinan Rombongan</label>
-                    <input type="text" id="pimpinan_rombongan" name="pimpinan_rombongan" required>
+                    <label for="pimpinan">Pimpinan Rombongan</label>
+                    <input type="text" id="pimpinan" name="pimpinan" required>
                 </div>
             </div>
 

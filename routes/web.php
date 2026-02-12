@@ -23,3 +23,13 @@ Route::post('/pengajuan', [SidonamoeApi::class, 'inputPengajuan'])
 
 Route::put('/admin/konfirmasi/{id_pengajuan}', [SidonamoeApi::class, 'updateData'])
     ->name('admin.konfirmasi');
+
+Route::get('/surat-pdf/{filename}', function ($filename) {
+    $path = storage_path('app/public/surat/' . $filename);
+    if (!file_exists($path)) {
+        abort(404, 'PDF tidak ditemukan');
+    }
+    return response()->file($path, [
+        'Content-Type' => 'application/pdf',
+    ]);
+})->where('filename', '.*')->name('surat.pdf');

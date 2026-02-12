@@ -2,9 +2,9 @@ FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
     git zip unzip libpng-dev libonig-dev libxml2-dev \
-    libzip-dev curl
+    libzip-dev libpq-dev curl
 
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl
 
 RUN a2enmod rewrite
 
