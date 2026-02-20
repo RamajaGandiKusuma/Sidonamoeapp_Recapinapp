@@ -1,0 +1,108 @@
+{
+  "name": "Sidonamoe",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form-submit",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6cca0803-f8c9-4e4f-a829-56ab917336b7",
+      "name": "Webhook",
+      "webhookId": "408318eb-daa7-408f-885b-5dc8bf225790"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "={{ $('Webhook').item.json.body.email_subject }}",
+        "message": "={{ $('Webhook').item.json.body.email_body }}",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "75521554-7513-4841-8401-6a976ce11adc",
+      "name": "Send a message",
+      "webhookId": "b69489b5-d170-41ba-aaae-208ffd0739e4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4ZIIR8KpBDdcBxsX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.pdf_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "3c787b9f-da29-48f8-989a-96a5d09fe5cf",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "9884fee8-240a-4f72-8d1f-84348fc877ef",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6aaa53786cb8c30ecce7d564664ad5803c96f88a536ad59e3987ec843263c784"
+  },
+  "id": "s1Wu7Wi0vb0LqmsV827bQ",
+  "tags": []
+}
